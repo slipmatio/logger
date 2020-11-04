@@ -24,7 +24,7 @@ export interface LoggerFunction {
 }
 
 export interface LoggerConfig {
-  logLevel: LogLevel
+  logLevel?: LogLevel
   name?: string
   logger?: LoggerFunction
 }
@@ -71,8 +71,12 @@ export class Logger {
   loggerName = ''
   private logFn: LoggerFunction
 
-  constructor(options: { logLevel: LogLevel; name?: string; logger?: LoggerFunction }) {
-    this.logLevel = options.logLevel
+  constructor(options: { logLevel?: LogLevel; name?: string; logger?: LoggerFunction }) {
+    if (options.logLevel) {
+      this.logLevel = options.logLevel
+    } else {
+      this.logLevel = process.env.NODE_ENV !== 'production' ? LogLevel.INFO : LogLevel.ERROR
+    }
     if (options.name) {
       this.loggerName = options.name
     }
