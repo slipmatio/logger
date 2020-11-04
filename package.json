@@ -49,15 +49,7 @@
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
-    "pre-push": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write"
-    ],
-    "*.ts?(x)": [
-      "prettier --parser=typescript --write"
-    ]
+    "pre-push": "yarn lint:fix"
   },
   "repository": {
     "type": "git",

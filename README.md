@@ -39,8 +39,8 @@ and then just use it wherever you need:
 logger.log('Hello World!')
 // > Hello world!
 
-logger.run('Hello World!')
-// > 🚀 [main.js] Hello world!
+logger.run()
+// > 🚀 [main.js]
 ```
 
 ### Importing manually
