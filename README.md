@@ -40,7 +40,7 @@ logger.log('Hello World!')
 // > Hello world!
 
 logger.run()
-// > 🚀 [main.js]
+// > 🚀 [main.ts]
 ```
 
 ### Importing manually
@@ -70,13 +70,13 @@ You can easily set the log level to work however you like by passing it as an ar
 ```js
 import { useLogger, LogLevel } from '@slipmatio/logger'
 
-// Show nothing
+// Log everything
 useLogger({
   logLevel: logger.DEBUG,
 })
 
-// Show nothing
+// Log nothing
 useLogger({
-  logLevel: logger.WARNING,
+  logLevel: logger.OFF,
 })
 ```
