@@ -41,10 +41,10 @@ const outputConfigs = {
     file: pkg.main,
     format: `cjs`,
   },
-  global: {
-    file: pkg.unpkg,
-    format: `iife`,
-  },
+  // global: {
+  //   file: pkg.unpkg,
+  //   format: `iife`,
+  // },
   esm: {
     file: pkg.browser || pkg.module.replace('-bundler.js', '-browser.js'),
     format: `es`,

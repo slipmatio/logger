@@ -1,4 +1,4 @@
-import { Logger, LogLevel, LoggerFunction, useLogger } from '../../src'
+import { Logger, LogLevel, LoggerFunction, useLogger } from '../src'
 
 const testLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
@@ -49,7 +49,7 @@ describe('Logger', () => {
   const logger3 = new Logger({
     logLevel: LogLevel.ERROR,
     name: 'logger3',
-    logger: testLogger,
+    logFn: testLogger,
   })
 
   const logger4 = new Logger({

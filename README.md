@@ -1,13 +1,15 @@
 # Better Logger
 
-Easier console logging for your JavaScript and TypeScript projects.
+Easy and lightweight console logging for your JavaScript and TypeScript projects. Control log levels in development vs production, integrate with third-party log tools and debug Vue applications.
 
 ## Features
 
 - Log levels that follow and extend browser console log levels
 - `success`, `critical` and `run` methods for more secure and informative logging
 - Nice looking and fully configurable output
+- Custom formatter for Vue 3
 - Full TypeScript support
+- Good test coverage
 
 ## Installation
 
@@ -33,7 +35,15 @@ import { useLogger } from '@slipmatio/logger'
 useLogger()
 ```
 
-and then just use it wherever you need:
+or with Vue 3:
+
+```js
+import { useLogger } from '@slipmatio/logger/vue'
+
+useLogger()
+```
+
+Then just use it wherever you want, no extra imports or other steps required:
 
 ```js
 logger.log('Hello World!')
@@ -80,3 +90,28 @@ useLogger({
   logLevel: logger.OFF,
 })
 ```
+
+## Options
+
+Here are the options and defaults for the Logger class. (The same options and defaults are used for `useLogger`.)
+
+```js
+import { Logger, LogLevel } from '@slipmatio/logger'
+
+const logger = new Logger({
+  // Log levels: DEBUG, INFO, WARN, ERROR, CRITICAL, OFF
+  logLevel: process.env.NODE_ENV !== 'production' ? LogLevel.INFO : LogLevel.ERROR,
+  name: '',
+  logFn: defaultLogger, // see source for implementation
+})
+```
+
+## Status
+
+This project was originally born around 2016 and has been copy-pasted in various formats from project to project. I finally decided to clean it up and release it as open source it has been helpful in so many projects. So while the repo itself is fairly new, this project is pretty mature and ready for production.
+
+That said, the documentation is slim and I'm unexperienced in packaging JS applications so any feedback is surely appreciated!
+
+## Support
+
+Follow [@uninen on Twitter](https://twitter.com/uninen)
