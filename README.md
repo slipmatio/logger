@@ -35,10 +35,10 @@ import { useLogger } from '@slipmatio/logger'
 useLogger()
 ```
 
-or with Vue 3:
+or with Vue 3 (note the `dist` in the path):
 
 ```js
-import { useLogger } from '@slipmatio/logger/vue'
+import { useLogger } from '@slipmatio/logger/dist/vue'
 
 useLogger()
 ```
