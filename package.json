@@ -1,6 +1,6 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Better console logging with TypScript support.",
   "main": "dist/logger.cjs.js",
   "module": "dist/logger.esm-bundler.js",
@@ -21,15 +21,18 @@
     "test": "yarn run test:types && yarn run test:unit && yarn run build"
   },
   "files": [
-    "dist/*.js",
-    "dist/logger.d.ts",
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "dist/**/*.d.ts.map",
     "LICENSE",
     "README.md"
   ],
   "keywords": [
     "logger",
     "logging",
-    "console"
+    "console",
+    "vue",
+    "typescript"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -39,7 +42,7 @@
     "@rollup/plugin-replace": "^2.3.4",
     "@types/jest": "^26.0.15",
     "@types/jsdom": "^16.2.5",
-    "jest": "^26.5.3",
+    "jest": "^26.6.3",
     "pascalcase": "^1.0.0",
     "prettier": "^2.1.2",
     "rollup": "^2.33.1",
