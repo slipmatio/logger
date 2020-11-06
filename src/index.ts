@@ -71,18 +71,18 @@ export class Logger {
   loggerName = ''
   private logFn: LoggerFunction
 
-  constructor(options: { logLevel?: LogLevel; name?: string; logFn?: LoggerFunction }) {
-    if (options.logLevel !== undefined) {
+  constructor(options?: { logLevel?: LogLevel; name?: string; logFn?: LoggerFunction }) {
+    if (options && options.logLevel !== undefined) {
       this.logLevel = options.logLevel
     } else {
       this.logLevel = process.env.NODE_ENV !== 'production' ? LogLevel.INFO : LogLevel.ERROR
     }
 
-    if (options.name) {
+    if (options && options.name) {
       this.loggerName = options.name
     }
 
-    if (options.logFn) {
+    if (options && options.logFn) {
       this.logFn = options.logFn
     } else {
       this.logFn = defaultLogger
@@ -172,6 +172,6 @@ export class Logger {
   }
 }
 
-export const useLogger = (options: LoggerConfig): void => {
+export const useLogger = (options?: LoggerConfig): void => {
   window.logger = new Logger(options)
 }
