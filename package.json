@@ -11,7 +11,7 @@
     "email": "ville@unessa.net"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "bash scripts/build.sh",
     "release": "bash scripts/release.sh",
     "size": "size-limit",
     "lint": "prettier -c --parser typescript \"{src,tests,e2e}/**/*.[jt]s?(x)\"",

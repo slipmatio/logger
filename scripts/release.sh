@@ -6,9 +6,6 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing v$VERSION ..."
-
-  # clear existing ts cache
-  rm -rf dist node_modules/.rts2_cache
   yarn run build
   
   yarn publish --new-version "$VERSION" --access public

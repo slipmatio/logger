@@ -16,6 +16,7 @@ export default [
     ],
     plugins: [
       ts({
+        cacheRoot: 'node_modules/.rts2_cache',
         tsconfigOverride: {
           exclude: ['tests', 'coverage'],
           compilerOptions: {
@@ -51,6 +52,7 @@ export default [
     external: ['vue'],
     plugins: [
       ts({
+        cacheRoot: 'node_modules/.rts2_cache',
         tsconfigOverride: {
           exclude: ['tests', 'coverage'],
           compilerOptions: {
