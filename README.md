@@ -16,13 +16,13 @@ Easy and lightweight console logging for your JavaScript and TypeScript projects
 Yarn
 
 ```sh
-yarn add -D @slipmatio/logger
+yarn add @slipmatio/logger
 ```
 
 Npm
 
 ```sh
-npm install -D @slipmatio/logger
+npm install @slipmatio/logger
 ```
 
 ## Usage
