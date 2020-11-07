@@ -1,6 +1,6 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Better console logging with TypScript support.",
   "main": "index.js",
   "module": "index.js",
@@ -22,11 +22,25 @@
     "test": "yarn run build:types && yarn run test:unit"
   },
   "files": [
-    "**/*.js",
-    "**/*.d.ts",
-    "**/*.d.ts.map",
+    "index.js",
+    "index.js.map",
+    "index.d.ts",
+    "index.d.ts.map",
+    "global/index.js",
+    "global/index.js.map",
+    "global/index.d.ts",
+    "global/index.d.ts.map",
+    "global/vue.js",
+    "global/vue.js.map",
+    "global/vue.d.ts",
+    "global/vue.d.ts.map",
+    "vue/index.js",
+    "vue/index.js.map",
+    "vue/index.d.ts",
+    "vue/index.d.ts.map",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGES.md"
   ],
   "keywords": [
     "logger",
