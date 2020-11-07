@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.0.7 - 2020-11-07
+
+- Fix: added `exports` to package.json to allow native imports from dist folder.
+
 ### 0.0.6 - 2020-11-07
 
 - Fix: refactor imports, fix build process.

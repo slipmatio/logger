@@ -1,6 +1,6 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Better console logging with TypScript support.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -19,6 +19,10 @@
     "build:types": "tsc --build tsconfig.json",
     "test:unit": "jest --coverage",
     "test": "yarn run build:types && yarn run test:unit && yarn run build"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./": "./dist/"
   },
   "files": [
     "dist/**/*.js",
