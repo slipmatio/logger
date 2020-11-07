@@ -1,4 +1,5 @@
-import { vueLogger, LogLevel, Logger, useLogger } from '../src/vue'
+import { vueLogger, LogLevel, Logger } from '../src/vue'
+import { useVueLogger } from '../src/global'
 import { ref, reactive } from 'vue'
 
 describe('Vue logger', () => {
@@ -100,14 +101,14 @@ describe('Vue logger', () => {
   })
 
   it('works with useLogger', () => {
-    useLogger()
+    useVueLogger()
 
     logger.log('hello vue')
     expect(consoleOutput.length).toBe(1)
   })
 
   it('sets options correctly', () => {
-    useLogger({
+    useVueLogger({
       logLevel: LogLevel.OFF,
       logFn: vueLogger,
     })

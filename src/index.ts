@@ -1,11 +1,3 @@
-declare global {
-  const logger: Logger
-
-  interface Window {
-    logger: Logger
-  }
-}
-
 export enum LogLevel {
   DEBUG,
   INFO,
@@ -170,8 +162,4 @@ export class Logger {
       }
     }
   }
-}
-
-export const useLogger = (options?: LoggerConfig): void => {
-  window.logger = new Logger(options)
 }

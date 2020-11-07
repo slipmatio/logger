@@ -73,4 +73,40 @@ export default [
       }),
     ],
   },
+  {
+    input: ['src/global.ts'],
+    output: [
+      {
+        file: 'dist/global.cjs.js',
+        format: 'cjs',
+      },
+      {
+        file: 'dist/global.esm-bundler.js',
+        format: 'es',
+      },
+    ],
+    external: ['vue'],
+    plugins: [
+      ts({
+        cacheRoot: 'node_modules/.rts2_cache',
+        tsconfigOverride: {
+          exclude: ['tests', 'coverage'],
+          compilerOptions: {
+            rootDir: 'src',
+          },
+        },
+      }),
+      esbuild({
+        // All options are optional
+        include: /src\/\.[jt]s$/, // default, inferred from `loaders` option
+        exclude: /node_modules|coverage|tests/, // default
+        sourceMap: false, // default
+        minify: process.env.NODE_ENV === 'production',
+        target: 'esnext', // default, or 'es20XX', 'esnext'
+        loaders: {
+          '.ts': 'ts',
+        },
+      }),
+    ],
+  },
 ]

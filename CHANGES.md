@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.0.34 - 2020-11-07
+
+- Fix: refactor globals.
+
 ### 0.0.3 - 2020-11-06
 
 - Fix: ship proper TS declaration files.

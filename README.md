@@ -30,7 +30,7 @@ npm install @slipmatio/logger
 The easiest way to use this logger is to install it globally in your main project file. It adds a `window.logger` object for you:
 
 ```js
-import { useLogger } from '@slipmatio/logger'
+import { useLogger } from '@slipmatio/logger/global'
 
 useLogger()
 ```
@@ -38,9 +38,9 @@ useLogger()
 or with Vue 3 (note the `dist` in the path):
 
 ```js
-import { useLogger } from '@slipmatio/logger/dist/vue'
+import { useVueLogger } from '@slipmatio/logger/global'
 
-useLogger()
+useVueLogger()
 ```
 
 Then just use it wherever you want, no extra imports or other steps required:
@@ -78,7 +78,7 @@ in other words, when developing you will see anything but `debug` logs and in pr
 You can easily set the log level to work however you like by passing it as an argument to the constructor:
 
 ```js
-import { useLogger, LogLevel } from '@slipmatio/logger'
+import { useLogger, LogLevel } from '@slipmatio/logger/global'
 
 // Log everything
 useLogger({
