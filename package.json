@@ -1,6 +1,6 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Better console logging with TypScript support.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm-bundler.js",

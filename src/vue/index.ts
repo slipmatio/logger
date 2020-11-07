@@ -2,12 +2,6 @@ import { isRef, unref, isReactive, toRaw } from 'vue'
 
 import { Logger, LoggerConfig, LoggerFunction, LogLevel } from '../index'
 
-declare global {
-  interface Window {
-    logger: Logger
-  }
-}
-
 export const vueLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
   message: string,
