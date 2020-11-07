@@ -12,14 +12,14 @@
   },
   "scripts": {
     "build": "bash scripts/build.sh",
+    "build:types": "tsc --build tsconfig.json",
     "cleanup": "bash scripts/cleanup.sh",
-    "release": "bash scripts/release.sh",
-    "size": "size-limit",
     "lint": "prettier -c --parser typescript \"{src,tests,e2e}/**/*.[jt]s?(x)\"",
     "lint:fix": "yarn run lint --write",
-    "build:types": "tsc --build tsconfig.json",
+    "release": "bash scripts/release.sh",
+    "size": "size-limit",
     "test:unit": "jest --coverage",
-    "test": "yarn run build:types && yarn run test:unit && yarn run build"
+    "test": "yarn run build:types && yarn run test:unit"
   },
   "files": [
     "**/*.js",
