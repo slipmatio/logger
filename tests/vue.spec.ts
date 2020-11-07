@@ -1,4 +1,5 @@
-import { vueLogger, LogLevel, Logger, useLogger } from '../src/vue'
+import { vueLogger, LogLevel, Logger } from '../src/vue'
+import { useLogger } from '../src/vue/global'
 import { ref, reactive } from 'vue'
 
 describe('Vue logger', () => {
