@@ -1,7 +1,7 @@
 import { Logger, LoggerConfig } from './index'
+import { vueLogger } from './vue/index'
 
 declare global {
-  // @ts-ignore
   const logger: Logger
 
   interface Window {
@@ -10,5 +10,14 @@ declare global {
 }
 
 export const useLogger = (options?: LoggerConfig): void => {
+  window.logger = new Logger(options)
+}
+
+export const useVueLogger = (options?: LoggerConfig): void => {
+  if (options) {
+    options = { ...options, logFn: vueLogger }
+  } else {
+    options = { logFn: vueLogger }
+  }
   window.logger = new Logger(options)
 }

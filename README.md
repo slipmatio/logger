@@ -38,9 +38,9 @@ useLogger()
 or with Vue 3 (note the `dist` in the path):
 
 ```js
-import { useLogger } from '@slipmatio/logger/vue/global'
+import { useVueLogger } from '@slipmatio/logger/global'
 
-useLogger()
+useVueLogger()
 ```
 
 Then just use it wherever you want, no extra imports or other steps required:
