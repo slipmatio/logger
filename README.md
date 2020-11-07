@@ -27,7 +27,7 @@ npm install @slipmatio/logger
 
 ## Usage
 
-The easiest way to use this logger is to install it globally in your main project file. It adds a `window.logger` object for you:
+The easiest way to use this logger is to install it globally from your main project file. It adds a `window.logger` object for you:
 
 ```js
 import { useLogger } from '@slipmatio/logger/global'
@@ -35,15 +35,24 @@ import { useLogger } from '@slipmatio/logger/global'
 useLogger()
 ```
 
-or with Vue 3 (note the `dist` in the path):
+or with Vue 3:
 
 ```js
-import { useVueLogger } from '@slipmatio/logger/global'
+import { useLogger } from '@slipmatio/logger/global/vue'
 
-useVueLogger()
+useLogger()
 ```
 
-Then just use it wherever you want, no extra imports or other steps required:
+As this adds a global `logger` variable to your window object, you might need to add following to your `.eslintrc.js` or other linter config to make your linter and editor aware of it:
+
+```js
+// eslint config
+globals: {
+  logger: 'readonly',
+},
+```
+
+Then just use `logger` wherever you want, no extra imports or other steps required:
 
 ```js
 logger.log('Hello World!')
@@ -53,7 +62,7 @@ logger.run()
 // > 🚀 [main.ts]
 ```
 
-### Importing manually
+### Importing and using manually
 
 You can also instantiate and import the logger manually. It works as you'd expect:
 
@@ -63,7 +72,7 @@ import { Logger } from '@slipmatio/logger'
 const logger = new Logger()
 ```
 
-If you export this `logger` from your main file, you can then import it manually wherever you want to use it. This requires the one extra import for each file but is more explicit and doesn't rely on `window`.
+If you export this `logger` from your main file, you can then import it manually wherever you want to use it. This requires the one extra import for each file but is more explicit and doesn't rely on `window` and doesn't need any special configuration for linters.
 
 ### Setting log level
 
@@ -108,9 +117,9 @@ const logger = new Logger({
 
 ## Status
 
-This project was originally born around 2016 and has been copy-pasted in various formats from project to project. I finally decided to clean it up and release it as open source it has been helpful in so many projects. So while the repo itself is fairly new, this project is pretty mature and ready for production.
+This project was originally born around 2016 and has been copy-pasted in various formats from project to project. As it has been helpful in so many projects, I finally decided to clean it up, convert to TypeScript and release as open source. So while the repo itself is new, the project is mature and ready for production.
 
-That said, the documentation is slim and I'm unexperienced in packaging JS applications so any feedback is surely appreciated!
+That said, the documentation is slim and I'm unexperienced in packaging JS applications so any help and feedback is surely appreciated!
 
 ## Support
 

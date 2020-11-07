@@ -1,14 +1,13 @@
 {
-  "include": ["src/dev.d.ts", "src/**/*.ts", "tests/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",
-    "outDir": "dist",
-    "sourceMap": false,
-    "noEmit": true,
+    "outDir": "build",
+    "sourceMap": true,
 
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es6",
+    "module": "es6",
     "moduleResolution": "node",
     "allowJs": false,
 
