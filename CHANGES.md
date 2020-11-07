@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.0.8 - 2020-11-07
+
+- Fix: adde manual scripts for better npm user experience.
+
 ### 0.0.7 - 2020-11-07
 
 - Fix: added `exports` to package.json to allow native imports from dist folder.

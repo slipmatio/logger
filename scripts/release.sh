@@ -7,8 +7,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
   echo "Releasing v$VERSION ..."
   yarn run build
-  
   yarn publish --new-version "$VERSION" --access public
+  yarn run cleanup
+
   git push -u origin --all
   git push -u origin --tags
 fi

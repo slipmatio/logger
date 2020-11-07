@@ -9,3 +9,9 @@ package-lock.json
 tests/e2e
 plugins
 build
+/index.d.ts
+/index.d.ts.map
+/index.js
+/index.js.map
+/global
+/vue

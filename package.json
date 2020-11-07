@@ -1,10 +1,10 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Better console logging with TypScript support.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
   "sideEffects": false,
   "author": {
     "name": "Ville Säävuori",
@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "bash scripts/build.sh",
+    "cleanup": "bash scripts/cleanup.sh",
     "release": "bash scripts/release.sh",
     "size": "size-limit",
     "lint": "prettier -c --parser typescript \"{src,tests,e2e}/**/*.[jt]s?(x)\"",
@@ -20,14 +21,10 @@
     "test:unit": "jest --coverage",
     "test": "yarn run build:types && yarn run test:unit && yarn run build"
   },
-  "exports": {
-    ".": "./dist/index.js",
-    "./": "./dist/"
-  },
   "files": [
-    "dist/**/*.js",
-    "dist/**/*.d.ts",
-    "dist/**/*.d.ts.map",
+    "**/*.js",
+    "**/*.d.ts",
+    "**/*.d.ts.map",
     "LICENSE",
     "README.md"
   ],
@@ -61,8 +58,5 @@
   "bugs": {
     "url": "https://gitlab.com/slipmatio/logger/-/issues"
   },
-  "homepage": "https://gitlab.com/slipmatio/logger",
-  "dependencies": {
-    "rollup-plugin-multi-input": "^1.1.1"
-  }
+  "homepage": "https://gitlab.com/slipmatio/logger"
 }
