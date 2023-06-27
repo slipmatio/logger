@@ -96,7 +96,7 @@ export class Logger {
     try {
       throw new Error('')
     } catch (e) {
-      error = e
+      error = e as Error
     }
 
     if (error.stack === undefined) {
