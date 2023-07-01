@@ -1,32 +1,11 @@
-export enum LogLevel {
-  DEBUG,
-  INFO,
-  WARN,
-  ERROR,
-  CRITICAL,
-  OFF,
-}
-
-export interface LoggerFunction {
-  (
-    method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-    message: string,
-    obj: unknown
-  ): void
-}
-
-export interface LoggerConfig {
-  logLevel?: LogLevel
-  name?: string
-  logFn?: LoggerFunction
-}
+import { LogLevel, type LoggerFunction } from './types'
 
 const defaultLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
   message: string,
   obj: unknown
 ) {
-  let logFn: (...params: any[]) => void
+  let logFn: (message: any, ...optionalParams: any[]) => void
 
   switch (method) {
     case 'log':
@@ -163,3 +142,5 @@ export class Logger {
     }
   }
 }
+
+export { LogLevel }

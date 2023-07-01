@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.1.0 - 2023-07-01
+
+- Refactor: revamped whole repo structure + tooling to match other Slipmat.io projects
+
 ### 0.0.9 - 2020-11-07
 
 - Fix: explicitly name files to include in tha npm package.

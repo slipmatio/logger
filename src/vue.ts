@@ -1,13 +1,13 @@
 import { isRef, unref, isReactive, toRaw } from 'vue'
 
-import { Logger, LoggerConfig, LoggerFunction, LogLevel } from '../index'
+import type { LoggerFunction, LogLevel } from './types'
 
-export const vueLogger: LoggerFunction = function (
+const vueLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
   message: string,
   obj: unknown
 ) {
-  let logFn: (...params: any[]) => void
+  let logFn: (message: any, ...optionalParams: any[]) => void
 
   switch (method) {
     case 'log':
@@ -46,13 +46,4 @@ export const vueLogger: LoggerFunction = function (
   }
 }
 
-export const useLogger = (options?: LoggerConfig): void => {
-  if (options) {
-    options = { ...options, logFn: vueLogger }
-  } else {
-    options = { logFn: vueLogger }
-  }
-  window.logger = new Logger(options)
-}
-
-export { LogLevel, Logger }
+export { LogLevel, vueLogger }
