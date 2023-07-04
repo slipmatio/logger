@@ -10,8 +10,8 @@ export enum LogLevel {
 export interface LoggerFunction {
   (
     method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-    message: string,
-    obj: unknown
+    message: any,
+    ...optionalParams: any[]
   ): void
 }
 

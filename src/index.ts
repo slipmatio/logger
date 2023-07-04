@@ -2,8 +2,8 @@ import { LogLevel, type LoggerFunction } from './types'
 
 const defaultLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-  message: string,
-  obj: unknown
+  message: any,
+  ...optionalParams: any[]
 ) {
   let logFn: (message: any, ...optionalParams: any[]) => void
 
@@ -30,8 +30,8 @@ const defaultLogger: LoggerFunction = function (
       logFn = console.log
   }
 
-  if (obj) {
-    logFn(message, obj)
+  if (optionalParams) {
+    logFn(message, ...optionalParams)
   } else {
     logFn(message)
   }
@@ -82,7 +82,7 @@ export class Logger {
       return ''
     } else {
       // console.trace()
-      console.log('error', error)
+      // console.log('error', error)
       // console.log('error.stack', error.stack)
 
       try {
@@ -94,54 +94,54 @@ export class Logger {
     }
   }
 
-  log(message: string, obj: any = undefined): void {
+  log(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
-      this.logFn('log', this.formatMsg(message), obj)
+      this.logFn('log', this.formatMsg(message), ...obj)
     }
   }
 
-  debug(message: string, obj: any = undefined): void {
+  debug(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.DEBUG) {
-      this.logFn('debug', this.formatMsg(message), obj)
+      this.logFn('debug', this.formatMsg(message), ...obj)
     }
   }
 
-  info(message: string, obj: any = undefined): void {
+  info(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
-      this.logFn('info', this.formatMsg(message), obj)
+      this.logFn('info', this.formatMsg(message), ...obj)
     }
   }
 
-  warn(message: string, obj: any = undefined): void {
+  warn(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.WARN) {
-      this.logFn('warn', this.formatMsg(message), obj)
+      this.logFn('warn', this.formatMsg(message), ...obj)
     }
   }
 
-  error(message: string, obj: any = undefined): void {
+  error(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.ERROR) {
-      this.logFn('error', this.formatMsg(message), obj)
+      this.logFn('error', this.formatMsg(message), ...obj)
     }
   }
 
-  success(message: string, obj: any = undefined): void {
+  success(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
-      this.logFn('success', '✅ ' + message, obj)
+      this.logFn('success', '✅ ' + message, ...obj)
     }
   }
 
-  critical(message: string, obj: any = undefined): void {
+  critical(message: any, ...obj: any[]): void {
     if (this.logLevel < LogLevel.OFF) {
-      this.logFn('critical', '🛑 ' + message, obj)
+      this.logFn('critical', '🛑 ' + message, ...obj)
     }
   }
 
-  run(message = '', obj: any = undefined): void {
+  run(message: any = '', ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
       if (message.length > 0) {
-        this.log('🚀 ' + message, obj)
+        this.log('🚀 ' + message, ...obj)
       } else {
-        this.log(`🚀 ${this.getCallerName()}`, obj)
+        this.log(`🚀 ${this.getCallerName()}`, ...obj)
       }
     }
   }

@@ -10,8 +10,12 @@ const one = ref(1)
 const two = ref(2)
 
 function add(a: number, b: number) {
+  logger.run()
   const result = a + b
-  logger.run('Add result: ', result)
+  logger.run('Add result: ', result, a, b)
+  logger.log('Log result: ', result)
+  logger.log('Log result: ', result, a, b)
+  console.log('Log result: ', result, a, b)
   return result
 }
 </script>
