@@ -1,6 +1,6 @@
 import logger from './loggertest'
 
-export function testFn() {
-  logger.run('testFn')
+export function testFnOne(message?: string) {
+  logger.run(message)
   return 'testFn'
 }

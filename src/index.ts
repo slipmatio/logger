@@ -81,6 +81,10 @@ export class Logger {
     if (error.stack === undefined) {
       return ''
     } else {
+      // console.trace()
+      console.log('error', error)
+      // console.log('error.stack', error.stack)
+
       try {
         const stack = error.stack.split('\n')[2]
         return stack.split('@')[0] + '()'
@@ -137,7 +141,7 @@ export class Logger {
       if (message.length > 0) {
         this.log('🚀 ' + message, obj)
       } else {
-        this.log('🚀 ' + this.getCallerName(), obj)
+        this.log(`🚀 ${this.getCallerName()}`, obj)
       }
     }
   }
