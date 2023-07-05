@@ -2,17 +2,13 @@
   "name": "@slipmatio/logger",
   "version": "0.1.0",
   "description": "Better console logging with TypScript support",
-  "main": "./dist/ui.cjs",
-  "module": "./dist/ui.js",
+  "main": "./dist/logger.cjs",
+  "module": "./dist/logger.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/ui.js",
-      "require": "./dist/ui.cjs"
-    },
-    "./style.css": {
-      "import": "./dist/style.css",
-      "require": "./dist/style.css"
+      "import": "./dist/logger.js",
+      "require": "./dist/logger.cjs"
     }
   },
   "author": {
@@ -54,6 +50,14 @@
     "vitest": "0.32.4",
     "vue": "3.3.4",
     "vue-tsc": "1.8.3"
+  },
+  "peerDependencies": {
+    "vue": "3"
+  },
+  "peerDependenciesMeta": {
+    "vue": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=18"
