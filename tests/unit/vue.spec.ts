@@ -1,6 +1,5 @@
-import { vueLogger, LogLevel, Logger } from '../src/vue'
-import { useLogger } from '../src/global/vue'
-import { ref, reactive } from 'vue'
+import { Logger, LogLevel, useVueLogger, VueLogFn } from '../../src/index'
+import { ref, reactive, computed } from 'vue'
 
 describe('Vue logger', () => {
   let consoleOutput: string[] = []
@@ -18,11 +17,12 @@ describe('Vue logger', () => {
     consoleOutput = []
   })
 
-  const mockedLog = (output: string) => consoleOutput.push(output)
+  const mockedLog = (output: any, ...args: any[]) => consoleOutput.push(output, ...args)
   const mockedDebug = (output: string) => consoleOutput.push(output)
   const mockedInfo = (output: string) => consoleOutput.push(output)
   const mockedWarn = (output: string) => consoleOutput.push(output)
   const mockedError = (output: string) => consoleOutput.push(output)
+
   beforeEach(() => {
     console.log = mockedLog
     console.debug = mockedDebug
@@ -33,7 +33,7 @@ describe('Vue logger', () => {
 
   const logger2 = new Logger({
     logLevel: LogLevel.DEBUG,
-    logFn: vueLogger,
+    logFn: VueLogFn,
   })
 
   it('logs with log', () => {
@@ -83,37 +83,42 @@ describe('Vue logger', () => {
   it('logs normal object', () => {
     const num = 1
     logger2.log('hello ref', num)
-    expect(consoleOutput.length).toBe(1)
+    expect(consoleOutput.length).toBe(2)
   })
 
   it('logs ref', () => {
     const num = ref(1)
     logger2.log('hello ref', num)
-    expect(consoleOutput.length).toBe(1)
-    expect(consoleOutput[0]).toContain('(ref): ')
+    expect(consoleOutput.length).toBe(3)
+    expect(consoleOutput[1]).toContain('(ref):')
   })
 
   it('logs reactive', () => {
     const obj = reactive({ hello: 'vue' })
     logger2.log('hello reactive', obj)
-    expect(consoleOutput.length).toBe(1)
-    expect(consoleOutput[0]).toContain('(reactive): ')
+    expect(consoleOutput.length).toBe(3)
+    expect(consoleOutput[1]).toContain('(reactive):')
+  })
+
+  it('logs computed', () => {
+    const r1 = ref(1)
+    const r2 = ref(2)
+    const res = computed(() => r1.value + r2.value)
+    logger2.log('hello computed', res)
+    expect(consoleOutput.length).toBe(3)
+    expect(consoleOutput[1]).toContain('(computed):')
   })
 
   it('works with useLogger', () => {
-    useLogger()
-
-    logger.log('hello vue')
+    const mylogger = useVueLogger()
+    mylogger.log('hello vue')
     expect(consoleOutput.length).toBe(1)
   })
 
   it('sets options correctly', () => {
-    useLogger({
-      logLevel: LogLevel.OFF,
-      logFn: vueLogger,
-    })
+    const mylogger = useVueLogger()
 
-    logger.log('hello vue')
+    mylogger.debug('hello vue')
     expect(consoleOutput.length).toBe(0)
   })
 })

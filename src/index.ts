@@ -1,32 +1,12 @@
-export enum LogLevel {
-  DEBUG,
-  INFO,
-  WARN,
-  ERROR,
-  CRITICAL,
-  OFF,
-}
-
-export interface LoggerFunction {
-  (
-    method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-    message: string,
-    obj: unknown
-  ): void
-}
-
-export interface LoggerConfig {
-  logLevel?: LogLevel
-  name?: string
-  logFn?: LoggerFunction
-}
+import { LogLevel, type LoggerFunction } from './types'
+import { VueLogFn } from './vue'
 
 const defaultLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-  message: string,
-  obj: unknown
+  message: any,
+  ...optionalParams: any[]
 ) {
-  let logFn: (...params: any[]) => void
+  let logFn: (message: any, ...optionalParams: any[]) => void
 
   switch (method) {
     case 'log':
@@ -51,14 +31,14 @@ const defaultLogger: LoggerFunction = function (
       logFn = console.log
   }
 
-  if (obj) {
-    logFn(message, obj)
+  if (optionalParams) {
+    logFn(message, ...optionalParams)
   } else {
     logFn(message)
   }
 }
 
-export class Logger {
+class Logger {
   logLevel: LogLevel
   loggerName = ''
   private logFn: LoggerFunction
@@ -96,70 +76,110 @@ export class Logger {
     try {
       throw new Error('')
     } catch (e) {
-      error = e
+      error = e as Error
     }
 
     if (error.stack === undefined) {
       return ''
     } else {
+      // console.trace()
+      // console.log('error', error)
+      // console.log('error.stack', error.stack)
+
       try {
         const stack = error.stack.split('\n')[2]
-        return stack.split('@')[0] + '()'
+        // Case: Firefox
+        const fnName = stack.split('@')[0] + '()'
+        if (fnName.includes(' (http')) {
+          // Case: Chromium
+          const stack2 = error.stack.split('\n')[3]
+          const fnMatch = stack2.match(/at (?:Proxy\.)?(\w+)/)
+          if (fnMatch) {
+            return fnMatch[1] + '()'
+          }
+          return ''
+        } else {
+          return fnName
+        }
       } catch (e) {
         return ''
       }
     }
   }
 
-  log(message: string, obj: any = undefined): void {
+  log(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
-      this.logFn('log', this.formatMsg(message), obj)
+      this.logFn('log', this.formatMsg(message), ...obj)
     }
   }
 
-  debug(message: string, obj: any = undefined): void {
+  debug(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.DEBUG) {
-      this.logFn('debug', this.formatMsg(message), obj)
+      this.logFn('debug', this.formatMsg(message), ...obj)
     }
   }
 
-  info(message: string, obj: any = undefined): void {
+  info(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
-      this.logFn('info', this.formatMsg(message), obj)
+      this.logFn('info', this.formatMsg(message), ...obj)
     }
   }
 
-  warn(message: string, obj: any = undefined): void {
+  warn(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.WARN) {
-      this.logFn('warn', this.formatMsg(message), obj)
+      this.logFn('warn', this.formatMsg(message), ...obj)
     }
   }
 
-  error(message: string, obj: any = undefined): void {
+  error(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.ERROR) {
-      this.logFn('error', this.formatMsg(message), obj)
+      this.logFn('error', this.formatMsg(message), ...obj)
     }
   }
 
-  success(message: string, obj: any = undefined): void {
+  success(message: any, ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
-      this.logFn('success', '✅ ' + message, obj)
+      this.logFn('success', '✅ ' + message, ...obj)
     }
   }
 
-  critical(message: string, obj: any = undefined): void {
+  critical(message: any, ...obj: any[]): void {
     if (this.logLevel < LogLevel.OFF) {
-      this.logFn('critical', '🛑 ' + message, obj)
+      this.logFn('critical', '🛑 ' + message, ...obj)
     }
   }
 
-  run(message = '', obj: any = undefined): void {
+  run(message: any = '', ...obj: any[]): void {
     if (this.logLevel <= LogLevel.INFO) {
       if (message.length > 0) {
-        this.log('🚀 ' + message, obj)
+        this.log('🚀 ' + message, ...obj)
       } else {
-        this.log('🚀 ' + this.getCallerName(), obj)
+        this.log(`🚀 ${this.getCallerName()}`, ...obj)
       }
     }
   }
 }
+
+const useLogger = (name?: string, debug: boolean = false): Logger => {
+  let level = LogLevel.INFO
+  if (debug) {
+    level = LogLevel.DEBUG
+  }
+  return new Logger({
+    logLevel: process.env.NODE_ENV !== 'production' ? level : LogLevel.ERROR,
+    name: name,
+  })
+}
+
+const useVueLogger = (name?: string, debug: boolean = false): Logger => {
+  let level = LogLevel.INFO
+  if (debug) {
+    level = LogLevel.DEBUG
+  }
+  return new Logger({
+    logLevel: process.env.NODE_ENV !== 'production' ? level : LogLevel.ERROR,
+    logFn: VueLogFn,
+    name: name,
+  })
+}
+export { LogLevel, Logger, useLogger, useVueLogger, type LoggerFunction, VueLogFn }
