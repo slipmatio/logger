@@ -1,4 +1,4 @@
-import { Logger, LogLevel, type LoggerFunction, useLogger } from '../src/index'
+import { Logger, LogLevel, type LoggerFunction, useLogger } from '../../src/index'
 
 const testLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
