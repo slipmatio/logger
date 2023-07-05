@@ -11,12 +11,6 @@ vueLogger.run()
 const result = ref<number>(0)
 const timesTwo = computed(() => result.value * 2)
 
-const num = ref(1)
-const twoTimes = computed(() => num.value * 2)
-
-console.log('proxy objects', num, twoTimes)
-vueLogger.log('proxy objects', num, twoTimes)
-
 function add(a: number, b: number) {
   logger.run()
   vueLogger.run()
@@ -34,8 +28,8 @@ function testLog() {
 }
 
 function testDebug() {
-  logger.debug('logger dbug')
-  vueLogger.debug('logger dbug')
+  logger.debug('logger debug')
+  vueLogger.debug('logger debug')
 }
 
 function testInfo() {
@@ -57,6 +51,11 @@ function testCritical() {
   logger.critical('logger critical')
   vueLogger.critical('logger critical')
 }
+
+function testSuccess() {
+  logger.success('logger success')
+  vueLogger.success('logger success')
+}
 </script>
 <template>
   <h1>Hello logger</h1>
@@ -67,6 +66,7 @@ function testCritical() {
   <button data-testid="debug" @click="testDebug()">Test debug</button>
   <button data-testid="info" @click="testInfo()">Test info</button>
   <button data-testid="warn" @click="testWarn()">Test warn</button>
-  <button data-testid="error" @click="testError()">Test error</button>
+  <button data-testid="errorb" @click="testError()">Test error</button>
   <button data-testid="critical" @click="testCritical()">Test critical</button>
+  <button data-testid="success" @click="testSuccess()">Test success</button>
 </template>
