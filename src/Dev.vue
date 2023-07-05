@@ -11,6 +11,12 @@ vueLogger.run()
 const result = ref<number>(0)
 const timesTwo = computed(() => result.value * 2)
 
+const num = ref(1)
+const twoTimes = computed(() => num.value * 2)
+
+console.log('proxy objects', num, twoTimes)
+vueLogger.log('proxy objects', num, twoTimes)
+
 function add(a: number, b: number) {
   logger.run()
   vueLogger.run()
