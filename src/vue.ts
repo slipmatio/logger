@@ -1,11 +1,11 @@
-import { isRef, unref, isReactive, toRaw } from 'vue'
+import { isRef, unref, isReactive, toValue, isReadonly } from 'vue'
 
-import type { LoggerFunction, LogLevel } from './types'
+import type { LoggerFunction } from './types'
 
-const vueLogger: LoggerFunction = function (
+export const VueLogFn: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-  message: string,
-  obj: unknown
+  message: any,
+  ...optionalParams: any[]
 ) {
   let logFn: (message: any, ...optionalParams: any[]) => void
 
@@ -32,18 +32,28 @@ const vueLogger: LoggerFunction = function (
       logFn = console.log
   }
 
-  if (obj) {
-    if (isRef(obj)) {
-      message += ' (ref): '
-      obj = unref(obj)
-    } else if (isReactive(obj)) {
-      message += ' (reactive): '
-      obj = toRaw(obj)
-    }
-    logFn(message, obj)
+  if (optionalParams) {
+    const parsedParams: any[] = []
+    let msg = ''
+
+    optionalParams.forEach((param) => {
+      if (isRef(param)) {
+        if (isReadonly(param)) {
+          msg = '(computed):'
+          parsedParams.push(msg, unref(param))
+        } else {
+          msg = '(ref):'
+          parsedParams.push(msg, unref(param))
+        }
+      } else if (isReactive(param)) {
+        msg = '(reactive):'
+        parsedParams.push(msg, toValue(param))
+      } else {
+        parsedParams.push(param)
+      }
+    })
+    logFn(message, ...parsedParams)
   } else {
     logFn(message)
   }
 }
-
-export { LogLevel, vueLogger }
