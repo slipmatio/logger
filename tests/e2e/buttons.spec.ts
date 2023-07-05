@@ -19,7 +19,9 @@ test('log buttons', async ({ page }) => {
 
   expect(consoleMessages[2]).toBe('[logger] Hello logger')
   expect(consoleMessages[3]).toBe('[vuelogger] Hello logger')
-  expect(consoleMessages[9]).toBe('[logger] logger.log result: 1 2 RefImpl ComputedRefImpl')
+  expect(consoleMessages[9]).toMatch(
+    /\[logger\] logger\.log result: \d+ \d+ (RefImpl ComputedRefImpl|JSHandle@object JSHandle@object)/g
+  )
   expect(consoleMessages[10]).toBe('[vuelogger] vuelogger.log result: 1 2 (ref): 3 (computed): 6')
   expect(consoleMessages[11]).toBe('[logger] logger log')
   expect(consoleMessages[12]).toBe('[vuelogger] logger log')

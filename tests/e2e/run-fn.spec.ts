@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('log buttons', async ({ page }) => {
+test('run fn', async ({ page }) => {
   const consoleMessages: string[] = []
 
   page.on('console', (msg) => {

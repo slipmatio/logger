@@ -24,7 +24,7 @@
     "dev": "vite",
     "test": "vitest --coverage",
     "test-e2e": "playwright test --ui",
-    "test-ci-e2e": "playwright test"
+    "test-e2e-ci": "playwright test"
   },
   "files": [
     "dist",
