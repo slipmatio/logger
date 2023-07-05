@@ -1,6 +1,6 @@
 import { useLogger, useVueLogger } from './index'
 
-const logger = useLogger('loggertest', true)
-const vueLogger = useVueLogger('vueloggertest')
+const logger = useLogger('logger', true)
+const vueLogger = useVueLogger('vuelogger')
 
 export { logger, vueLogger }

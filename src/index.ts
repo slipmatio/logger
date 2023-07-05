@@ -182,4 +182,4 @@ const useVueLogger = (name?: string, debug: boolean = false): Logger => {
     name: name,
   })
 }
-export { LogLevel, Logger, useLogger, useVueLogger }
+export { LogLevel, Logger, useLogger, useVueLogger, type LoggerFunction, VueLogFn }

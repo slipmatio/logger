@@ -7,5 +7,5 @@
     "allowSyntheticDefaultImports": true,
     "types": ["node", "happy-dom", "vitest/globals"]
   },
-  "include": ["vite.config.ts", "package.json"]
+  "include": ["vite.config.ts", "package.json", "tests/**/*.ts", "src/**/*.ts"]
 }

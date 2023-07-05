@@ -16,7 +16,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    include: ['tests/unit/**/*.{test,spec}.ts', 'src/**/*.spec.ts'],
+    include: ['tests/**/*.{test,spec}.ts', 'src/**/*.spec.ts'],
     environment: 'happy-dom',
     coverage: {
       exclude: ['__mocks__/*', 'tests/*', '**/*.spec.ts'],

@@ -1,10 +1,9 @@
-import { Logger, LogLevel, LoggerFunction } from '../src'
-import { useLogger } from '../src/global'
+import { Logger, LogLevel, type LoggerFunction, useLogger } from '../src/index'
 
 const testLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-  message: string,
-  obj: unknown
+  message: any,
+  ...optionalParams: any[]
 ) {
   console.log('from testlogger: ' + message)
 }
@@ -145,13 +144,5 @@ describe('Logger', () => {
   it('displays caller name with empty run', () => {
     logger.run()
     expect(consoleOutput.length).toBe(1)
-  })
-
-  it('initializes window with useLogger', () => {
-    expect(window.logger).toBeUndefined()
-    useLogger({
-      logLevel: LogLevel.DEBUG,
-    })
-    expect(window.logger).not.toBeUndefined()
   })
 })
