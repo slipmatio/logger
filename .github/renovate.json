@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "config:base",
+    "group:all",
+    ":widenPeerDependencies",
+    "config:basic-github-automerge"
+  ],
+  "enabledManagers": [
+    "npm"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "automerge": true,
+      "stabilityDays": 2
+    },
+    {
+      "matchPackagePatterns": [
+        "npm"
+      ],
+      "rangeStrategy": "auto"
+    }
+  ],
+  "timezone": "Europe/Helsinki",
+  "dependencyDashboard": true
+}

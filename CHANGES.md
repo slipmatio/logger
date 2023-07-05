@@ -1,8 +1,10 @@
 # Changelog
 
-### 0.1.0 - 2023-07-01
+### 0.1.0 - 2023-07-06
 
 - Refactor: revamped whole repo structure + tooling to match other Slipmat.io projects
+- Feat: added proper `logger.run()` support for Chromium-based browsers.
+- Chore: bumped all deps.
 
 ### 0.0.9 - 2020-11-07
 
