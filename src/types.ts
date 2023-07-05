@@ -14,9 +14,3 @@ export interface LoggerFunction {
     ...optionalParams: any[]
   ): void
 }
-
-export interface LoggerConfig {
-  logLevel?: LogLevel
-  name?: string
-  logFn?: LoggerFunction
-}

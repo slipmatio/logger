@@ -1,4 +1,5 @@
 import { LogLevel, type LoggerFunction } from './types'
+import { VueLogFn } from './vue'
 
 const defaultLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
@@ -37,7 +38,7 @@ const defaultLogger: LoggerFunction = function (
   }
 }
 
-export class Logger {
+class Logger {
   logLevel: LogLevel
   loggerName = ''
   private logFn: LoggerFunction
@@ -87,7 +88,19 @@ export class Logger {
 
       try {
         const stack = error.stack.split('\n')[2]
-        return stack.split('@')[0] + '()'
+        // Case: Firefox
+        const fnName = stack.split('@')[0] + '()'
+        if (fnName.includes(' (http')) {
+          // Case: Chromium
+          const stack2 = error.stack.split('\n')[3]
+          const fnMatch = stack2.match(/at (?:Proxy\.)?(\w+)/)
+          if (fnMatch) {
+            return fnMatch[1] + '()'
+          }
+          return ''
+        } else {
+          return fnName
+        }
       } catch (e) {
         return ''
       }
@@ -147,4 +160,26 @@ export class Logger {
   }
 }
 
-export { LogLevel }
+const useLogger = (name?: string, debug: boolean = false): Logger => {
+  let level = LogLevel.INFO
+  if (debug) {
+    level = LogLevel.DEBUG
+  }
+  return new Logger({
+    logLevel: process.env.NODE_ENV !== 'production' ? level : LogLevel.ERROR,
+    name: name,
+  })
+}
+
+const useVueLogger = (name?: string, debug: boolean = false): Logger => {
+  let level = LogLevel.INFO
+  if (debug) {
+    level = LogLevel.DEBUG
+  }
+  return new Logger({
+    logLevel: process.env.NODE_ENV !== 'production' ? level : LogLevel.ERROR,
+    logFn: VueLogFn,
+    name: name,
+  })
+}
+export { LogLevel, Logger, useLogger, useVueLogger }

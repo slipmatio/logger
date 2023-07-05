@@ -1,15 +1,6 @@
-import { Logger, LogLevel } from './index'
-import { VueLogFn } from './vue'
+import { useLogger, useVueLogger } from './index'
 
-const logger = new Logger({
-  logLevel: LogLevel.DEBUG,
-  name: 'loggertest',
-})
-
-const vueLogger = new Logger({
-  logLevel: LogLevel.DEBUG,
-  name: 'vueloggertest',
-  logFn: VueLogFn,
-})
+const logger = useLogger('loggertest', true)
+const vueLogger = useVueLogger('vueloggertest')
 
 export { logger, vueLogger }
