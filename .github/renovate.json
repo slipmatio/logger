@@ -2,8 +2,7 @@
   "extends": [
     "config:base",
     "group:all",
-    ":widenPeerDependencies",
-    "config:basic-github-automerge"
+    ":widenPeerDependencies"
   ],
   "enabledManagers": [
     "npm"
