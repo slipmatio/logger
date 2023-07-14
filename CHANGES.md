@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.1.1 - N/A
+
+- Fix: type exports work properly now.
+- Chore: bumped all deps.
+
 ### 0.1.0 - 2023-07-06
 
 - Refactor: revamped whole repo structure + tooling to match other Slipmat.io projects
