@@ -2,13 +2,14 @@
   "name": "@slipmatio/logger",
   "version": "0.1.1",
   "description": "Better console logging with TypScript support",
-  "main": "./dist/logger.js",
-  "module": "./dist/logger.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/logger.mjs",
-      "require": "./dist/logger.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "author": {
