@@ -527,7 +527,7 @@ packages:
     dependencies:
       diff-sequences: 29.4.3
       loupe: 2.3.6
-      pretty-format: 29.6.0
+      pretty-format: 29.6.1
     dev: true
 
   /@volar/language-core@1.8.3:
