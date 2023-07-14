@@ -1,14 +1,15 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Better console logging with TypScript support",
-  "main": "./dist/logger.js",
-  "module": "./dist/logger.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/logger.mjs",
-      "require": "./dist/logger.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
     }
   },
   "author": {
@@ -38,14 +39,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "1.35.1",
-    "@types/node": "20.4.1",
+    "@playwright/test": "1.36.0",
+    "@types/node": "20.4.2",
     "@vitejs/plugin-vue": "4.2.3",
     "@vitest/coverage-v8": "0.33.0",
     "@vue/test-utils": "2.4.0",
-    "happy-dom": "10.1.1",
+    "happy-dom": "10.3.2",
     "typescript": "5.1.6",
-    "vite": "4.4.2",
+    "vite": "4.4.3",
     "vite-plugin-dts": "3.2.0",
     "vitest": "0.33.0",
     "vue": "3.3.4",

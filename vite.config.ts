@@ -4,15 +4,22 @@ import dts from 'vite-plugin-dts'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
-  plugins: [vue(), dts()],
+  plugins: [vue(), dts({
+    copyDtsFiles: true,
+    rollupTypes: true,
+    insertTypesEntry: true
+  })],
   build: {
     emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'logger',
-      fileName: 'logger',
+      fileName: 'index',
       formats: ['es', 'cjs'],
     },
+    rollupOptions: {
+      external: ['vue']
+    }
   },
   test: {
     globals: true,
