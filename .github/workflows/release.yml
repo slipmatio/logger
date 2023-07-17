@@ -38,7 +38,7 @@ jobs:
         if: steps.create_tag.outputs.successful
         with:
           head-ref: ${{steps.create_tag.outputs.version}}
-          filter-author: (Uninen|Renovate Bot)
+          filter-author: (Uninen|renovate-bot)
           show-emoji: false
 
       - name: Get the changelog
