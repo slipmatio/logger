@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.1.3 - 2023-07-17
+
+- fix: trigger releases on publish
+
 ### 0.1.2 - 2023-07-17
 
 - CI: added automatic tagging and releases to GH actions.

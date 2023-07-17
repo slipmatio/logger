@@ -21,6 +21,7 @@ jobs:
           pnpm build
 
       - uses: JS-DevTools/npm-publish@v2
+        id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
@@ -30,6 +31,7 @@ jobs:
         uses: jaywcjlove/create-tag-action@main
         with:
           package-path: ./package.json
+
       - name: Generate Changelog
         id: changelog
         uses: jaywcjlove/changelog-generator@main
