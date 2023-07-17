@@ -1,6 +1,10 @@
 # Changelog
 
-### 0.1.1 - N/A
+### 0.1.2 - 2023-07-17
+
+- CI: added automatic tagging and releases to GH actions.
+
+### 0.1.1 - 2023-07-17
 
 - Fix: type exports work properly now.
 - Chore: bumped all deps.
