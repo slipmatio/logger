@@ -21,6 +21,13 @@
         "npm"
       ],
       "rangeStrategy": "auto"
+    },
+    {
+      "matchPackageNames": [
+        "vite-plugin-dts"
+      ],
+      "matchCurrentVersion": "3.3.0",
+      "enabled": false
     }
   ],
   "timezone": "Europe/Helsinki",
