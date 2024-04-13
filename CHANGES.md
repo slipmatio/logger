@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.2.0 - 2024-04-13
+
+- fix: upgrade Vite configs
+- chore: bump deps
+
 ### 0.1.3 - 2023-07-17
 
 - fix: trigger releases on publish
