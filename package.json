@@ -41,17 +41,17 @@
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "1.44.0",
-    "@types/node": "20.12.11",
+    "@types/node": "20.12.12",
     "@vitejs/plugin-vue": "5.0.4",
     "@vitest/coverage-v8": "1.6.0",
     "@vue/test-utils": "2.4.6",
-    "happy-dom": "14.10.1",
+    "happy-dom": "14.11.0",
     "typescript": "5.4.5",
     "vite": "5.2.11",
     "vite-plugin-dts": "3.9.1",
     "vitest": "1.6.0",
     "vue": "3.4.27",
-    "vue-tsc": "2.0.17"
+    "vue-tsc": "2.0.19"
   },
   "peerDependencies": {
     "vue": "3"
