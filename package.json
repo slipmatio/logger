@@ -41,16 +41,16 @@
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "1.45.3",
-    "@types/node": "20.14.12",
-    "@vitejs/plugin-vue": "5.1.0",
-    "@vitest/coverage-v8": "2.0.4",
+    "@types/node": "20.14.14",
+    "@vitejs/plugin-vue": "5.1.2",
+    "@vitest/coverage-v8": "2.0.5",
     "@vue/test-utils": "2.4.6",
     "happy-dom": "14.12.3",
     "typescript": "5.5.4",
     "vite": "5.3.5",
     "vite-plugin-dts": "3.9.1",
-    "vitest": "2.0.4",
-    "vue": "3.4.34",
+    "vitest": "2.0.5",
+    "vue": "3.4.35",
     "vue-tsc": "2.0.29"
   },
   "peerDependencies": {
