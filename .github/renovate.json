@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     "group:all",
     "schedule:weekly",
     ":widenPeerDependencies"
@@ -14,13 +14,13 @@
         "npm"
       ],
       "automerge": true,
-      "stabilityDays": 2
+      "minimumReleaseAge": "2 days"
     },
     {
-      "matchPackagePatterns": [
-        "npm"
-      ],
-      "rangeStrategy": "auto"
+      "rangeStrategy": "auto",
+      "matchPackageNames": [
+        "/npm/"
+      ]
     },
     {
       "matchPackageNames": [
