@@ -13,20 +13,20 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v4.2.2
+      - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 8
+          version: 9
           run_install: false
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4.1.0
         with:
-          node-version: 18
+          node-version: 22
 
       - run: |
           pnpm i --frozen-lockfile
           pnpm build
 
-      - uses: JS-DevTools/npm-publish@v2
+      - uses: JS-DevTools/npm-publish@v3.1.1
         id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
@@ -34,13 +34,13 @@ jobs:
       - name: Create Tag
         if: ${{ steps.publish.outputs.type }}
         id: create_tag
-        uses: jaywcjlove/create-tag-action@main
+        uses: jaywcjlove/create-tag-action@v2.2.0
         with:
           package-path: ./package.json
 
       - name: Generate Changelog
         id: changelog
-        uses: jaywcjlove/changelog-generator@main
+        uses: jaywcjlove/changelog-generator@v2.2.2
         if: steps.create_tag.outputs.successful
         with:
           head-ref: ${{steps.create_tag.outputs.version}}
@@ -51,7 +51,7 @@ jobs:
         run: echo "${{ steps.changelog.outputs.changelog }}"
 
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.14.0
         if: steps.create_tag.outputs.successful
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
