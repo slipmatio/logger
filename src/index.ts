@@ -171,13 +171,12 @@ const useLogger = (name?: string, debug: boolean = false): Logger => {
   })
 }
 
-const useVueLogger = (name?: string, debug: boolean = false): Logger => {
-  let level = LogLevel.INFO
-  if (debug) {
-    level = LogLevel.DEBUG
+const useVueLogger = (name?: string, level?: LogLevel): Logger => {
+  if (!level) {
+    level = import.meta.env.MODE === 'development' ? LogLevel.INFO : LogLevel.ERROR
   }
   return new Logger({
-    logLevel: import.meta.env.MODE === 'development' ? level : LogLevel.ERROR,
+    logLevel: level,
     logFn: VueLogFn,
     name: name,
   })

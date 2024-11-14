@@ -2,6 +2,7 @@
 
 ### 0.3.0 - 2024-11-14
 
+- refactor: changed `useVueLogger` to accept logLevel argument
 - ci: only release after tests pass
 - chore: upgrade Renovate config
 - chore: bump deps

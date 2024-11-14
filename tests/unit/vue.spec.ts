@@ -111,13 +111,13 @@ describe('Vue logger', () => {
   })
 
   it('works with useLogger', () => {
-    const mylogger = useVueLogger()
+    const mylogger = useVueLogger('test', LogLevel.INFO)
     mylogger.log('hello vue')
     expect(consoleOutput.length).toBe(1)
   })
 
   it('sets options correctly', () => {
-    const mylogger = useVueLogger()
+    const mylogger = useVueLogger('test', LogLevel.INFO)
 
     mylogger.debug('hello vue')
     expect(consoleOutput.length).toBe(0)
