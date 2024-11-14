@@ -1,33 +1,15 @@
 {
-  "extends": [
-    "config:base",
-    "group:all",
-    "schedule:weekly",
-    ":widenPeerDependencies"
-  ],
-  "enabledManagers": [
-    "npm"
-  ],
+  "extends": ["config:recommended", "group:all", "schedule:weekly", ":widenPeerDependencies"],
+  "enabledManagers": ["npm"],
   "packageRules": [
     {
-      "matchManagers": [
-        "npm"
-      ],
+      "matchManagers": ["npm"],
       "automerge": true,
-      "stabilityDays": 2
+      "minimumReleaseAge": "2 days"
     },
     {
-      "matchPackagePatterns": [
-        "npm"
-      ],
-      "rangeStrategy": "auto"
-    },
-    {
-      "matchPackageNames": [
-        "vite-plugin-dts"
-      ],
-      "matchCurrentVersion": "3.2.0",
-      "enabled": false
+      "rangeStrategy": "auto",
+      "matchPackageNames": ["/npm/"]
     }
   ],
   "timezone": "Europe/Helsinki",

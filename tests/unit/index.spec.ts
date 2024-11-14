@@ -1,4 +1,5 @@
-import { Logger, LogLevel, type LoggerFunction, useLogger } from '../../src/index'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { Logger, LogLevel, type LoggerFunction } from '../../src/index'
 
 const testLogger: LoggerFunction = function (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',

@@ -1,6 +1,6 @@
 {
   "name": "@slipmatio/logger",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "Better console logging with TypScript support",
   "main": "dist/index.cjs",
@@ -18,11 +18,13 @@
     "email": "ville@unessa.net"
   },
   "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "test": "vitest --coverage",
-    "test-e2e": "playwright test --ui",
-    "test-e2e-ci": "playwright test"
+    "dev": "DEBUG=0 vite",
+    "build": "DEBUG=0 vue-tsc --build --force && vite build",
+    "test": "DEBUG=0 vitest",
+    "test:e2e": "DEBUG=0 playwright test --ui",
+    "test:ci-e2e": "DEBUG=0 playwright test",
+    "coverage": "DEBUG=0 vitest run --coverage",
+    "type-check": "DEBUG=0 vue-tsc --build --force"
   },
   "files": [
     "dist",
@@ -41,15 +43,17 @@
   "license": "MIT",
   "devDependencies": {
     "@playwright/test": "1.48.2",
+    "@tsconfig/node20": "^20.1.4",
     "@types/node": "22.9.0",
-    "@vitejs/plugin-vue": "5.1.4",
-    "@vitest/coverage-v8": "2.1.4",
+    "@vitejs/plugin-vue": "5.2.0",
+    "@vitest/coverage-v8": "2.1.5",
     "@vue/test-utils": "2.4.6",
-    "happy-dom": "15.11.0",
+    "@vue/tsconfig": "^0.6.0",
+    "happy-dom": "15.11.6",
     "typescript": "5.6.3",
-    "vite": "5.4.10",
+    "vite": "5.4.11",
     "vite-plugin-dts": "4.3.0",
-    "vitest": "2.1.4",
+    "vitest": "2.1.5",
     "vue": "3.5.12",
     "vue-tsc": "2.1.10"
   },
@@ -62,7 +66,7 @@
     }
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "repository": {
     "type": "git",

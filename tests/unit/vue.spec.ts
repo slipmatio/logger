@@ -1,5 +1,6 @@
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { computed, reactive, ref } from 'vue'
 import { Logger, LogLevel, useVueLogger, VueLogFn } from '../../src/index'
-import { ref, reactive, computed } from 'vue'
 
 describe('Vue logger', () => {
   let consoleOutput: string[] = []
@@ -110,13 +111,13 @@ describe('Vue logger', () => {
   })
 
   it('works with useLogger', () => {
-    const mylogger = useVueLogger()
+    const mylogger = useVueLogger('test', LogLevel.INFO)
     mylogger.log('hello vue')
     expect(consoleOutput.length).toBe(1)
   })
 
   it('sets options correctly', () => {
-    const mylogger = useVueLogger()
+    const mylogger = useVueLogger('test', LogLevel.INFO)
 
     mylogger.debug('hello vue')
     expect(consoleOutput.length).toBe(0)

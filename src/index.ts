@@ -47,7 +47,7 @@ class Logger {
     if (options && options.logLevel !== undefined) {
       this.logLevel = options.logLevel
     } else {
-      this.logLevel = process.env.NODE_ENV !== 'production' ? LogLevel.INFO : LogLevel.ERROR
+      this.logLevel = import.meta.env.MODE === 'development' ? LogLevel.INFO : LogLevel.ERROR
     }
 
     if (options && options.name) {
@@ -166,20 +166,19 @@ const useLogger = (name?: string, debug: boolean = false): Logger => {
     level = LogLevel.DEBUG
   }
   return new Logger({
-    logLevel: process.env.NODE_ENV !== 'production' ? level : LogLevel.ERROR,
+    logLevel: import.meta.env.MODE === 'development' ? level : LogLevel.ERROR,
     name: name,
   })
 }
 
-const useVueLogger = (name?: string, debug: boolean = false): Logger => {
-  let level = LogLevel.INFO
-  if (debug) {
-    level = LogLevel.DEBUG
+const useVueLogger = (name?: string, level?: LogLevel): Logger => {
+  if (!level) {
+    level = import.meta.env.MODE === 'development' ? LogLevel.INFO : LogLevel.ERROR
   }
   return new Logger({
-    logLevel: process.env.NODE_ENV !== 'production' ? level : LogLevel.ERROR,
+    logLevel: level,
     logFn: VueLogFn,
     name: name,
   })
 }
-export { LogLevel, Logger, useLogger, useVueLogger, type LoggerFunction, VueLogFn }
+export { Logger, LogLevel, useLogger, useVueLogger, VueLogFn, type LoggerFunction }

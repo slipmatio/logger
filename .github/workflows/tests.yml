@@ -1,26 +1,26 @@
-name: E2E Test
+name: Tests
 
 on:
   push:
     branches:
       - main
     paths:
-      - '.github/workflows/e2e.yml'
+      - '.github/workflows/tests.yml'
       - 'pnpm-lock.yaml'
       - 'src/**/*.ts'
       - 'src/**/*.vue'
-      - 'tests/e2e/*.spec.ts'
+      - 'tests/**/*.ts'
   pull_request:
     paths:
-      - '.github/workflows/e2e.yml'
+      - '.github/workflows/tests.yml'
       - 'pnpm-lock.yaml'
       - 'src/**/*.ts'
       - 'src/**/*.vue'
-      - 'tests/e2e/*.spec.ts'
+      - 'tests/**/*.ts'
   workflow_dispatch:
 
 concurrency:
-  group: e2e-${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  group: tests-${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
@@ -28,33 +28,47 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      CI: 1
       DEBUG: 0
       PLAYWRIGHT_BROWSERS_PATH: 0
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4.2.2
+      - uses: actions/cache@v4.1.2
         with:
           path: /home/runner/.local/share/pnpm/store
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
-      - uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2.4.1
         with:
-          version: 8
+          version: 9
           run_install: true
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4.1.0
         with:
-          node-version: 18
+          node-version: 22
           cache: 'pnpm'
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm coverage
+
+      - name: Component Coverage
+        uses: davelosert/vitest-coverage-report-action@v2.7.0
+        if: ${{ always() }}
+        with:
+          working-directory: ./
+          vite-config-path: ./vite.config.ts
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
       - name: Run e2e tests
-        run: pnpm test-e2e-ci
+        run: pnpm test:ci-e2e
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4.4.3
         if: always()
         with:
           name: playwright-report

@@ -13,22 +13,8 @@ Easy and lightweight console logging for your JavaScript and TypeScript projects
 
 ## Installation
 
-Pnpm
-
 ```sh
 pnpm add @slipmatio/logger
-```
-
-Yarn
-
-```sh
-yarn add @slipmatio/logger
-```
-
-Npm
-
-```sh
-npm install @slipmatio/logger
 ```
 
 ## Basic Usage
@@ -59,7 +45,7 @@ Vue logger uses a special logger function that pretty prints ref, reactive, and 
 import { ref, computed } from 'vue'
 import { useVueLogger } from '@slipmatio/logger'
 
-const logger = useVueLogger('vuelogger', true)
+const logger = useVueLogger('vuelogger')
 
 const num = ref(1)
 const timesTwo = computed(() => num.value * 2)
