@@ -1,5 +1,11 @@
 # Changelog
 
+### 0.3.0 - 2024-11-14
+
+- ci: only release after tests pass
+- chore: upgrade Renovate config
+- chore: bump deps
+
 ### 0.2.0 - 2024-04-13
 
 - fix: upgrade Vite configs

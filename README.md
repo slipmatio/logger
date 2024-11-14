@@ -13,22 +13,8 @@ Easy and lightweight console logging for your JavaScript and TypeScript projects
 
 ## Installation
 
-Pnpm
-
 ```sh
 pnpm add @slipmatio/logger
-```
-
-Yarn
-
-```sh
-yarn add @slipmatio/logger
-```
-
-Npm
-
-```sh
-npm install @slipmatio/logger
 ```
 
 ## Basic Usage

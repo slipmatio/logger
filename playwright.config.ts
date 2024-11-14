@@ -11,6 +11,7 @@ const config: PlaywrightTestConfig = {
      */
     timeout: 3000,
   },
+  fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -30,25 +31,17 @@ const config: PlaywrightTestConfig = {
   },
   projects: [
     {
-      name: 'iPhone 6',
+      name: 'iPhone SE',
       use: {
         browserName: 'webkit',
-        ...devices['iPhone 6'],
-      },
-    },
-    {
-      name: 'Macbook 11',
-      use: {
-        browserName: 'firefox',
-        ...devices['Macbook 11'],
-        video: 'on-first-retry',
+        ...devices['iPhone SE'],
       },
     },
     {
       name: 'Desktop',
       use: {
-        browserName: 'chromium',
-        ...devices['Macbook Pro'],
+        browserName: 'firefox',
+        ...devices['Desktop Firefox'],
       },
     },
   ],

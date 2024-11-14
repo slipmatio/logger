@@ -1,5 +1,6 @@
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { computed, reactive, ref } from 'vue'
 import { Logger, LogLevel, useVueLogger, VueLogFn } from '../../src/index'
-import { ref, reactive, computed } from 'vue'
 
 describe('Vue logger', () => {
   let consoleOutput: string[] = []
