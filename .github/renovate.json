@@ -1,15 +1,16 @@
 {
-  "extends": ["config:recommended", "group:all", "schedule:weekly", ":widenPeerDependencies"],
+  "extends": ["config:recommended", "group:all"],
   "enabledManagers": ["npm", "github-actions"],
+  "schedule": "before 5am on Monday",
   "packageRules": [
     {
       "matchManagers": ["npm"],
       "automerge": true,
-      "minimumReleaseAge": "2 days"
+      "minimumReleaseAge": "3 days"
     },
     {
-      "rangeStrategy": "auto",
-      "matchPackageNames": ["/npm/"]
+      "matchManagers": ["github-actions"],
+      "automerge": true
     }
   ],
   "timezone": "Europe/Helsinki",

@@ -1,5 +1,11 @@
 # Changelog
 
+### 0.3.1 - 2024-11-27
+
+- refactor: explicitly type check in CI
+- refactor: added better schedule for Renovate
+- chore: bumped deps
+
 ### 0.3.0 - 2024-11-14
 
 - refactor: changed `useVueLogger` to accept logLevel argument
