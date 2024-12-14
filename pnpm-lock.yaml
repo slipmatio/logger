@@ -11,9 +11,9 @@ importers:
       '@playwright/test':
         specifier: 1.49.0
         version: 1.49.0
-      '@tsconfig/node20':
-        specifier: ^20.1.4
-        version: 20.1.4
+      '@tsconfig/node22':
+        specifier: 22.0.0
+        version: 22.0.0
       '@types/node':
         specifier: 22.10.0
         version: 22.10.0
@@ -27,7 +27,7 @@ importers:
         specifier: 2.4.6
         version: 2.4.6
       '@vue/tsconfig':
-        specifier: ^0.6.0
+        specifier: 0.6.0
         version: 0.6.0(typescript@5.6.3)(vue@3.5.13(typescript@5.6.3))
       happy-dom:
         specifier: 15.11.6
@@ -393,8 +393,8 @@ packages:
   '@rushstack/ts-command-line@4.23.1':
     resolution: {integrity: sha512-40jTmYoiu/xlIpkkRsVfENtBq4CW3R4azbL0Vmda+fMwHWqss6wwf/Cy/UJmMqIzpfYc2OTnjYP1ZLD3CmyeCA==}
 
-  '@tsconfig/node20@20.1.4':
-    resolution: {integrity: sha512-sqgsT69YFeLWf5NtJ4Xq/xAF8p4ZQHlmGW74Nu2tD4+g5fAsposc4ZfaaPixVu4y01BEiDCWLRDCvDM5JOsRxg==}
+  '@tsconfig/node22@22.0.0':
+    resolution: {integrity: sha512-twLQ77zevtxobBOD4ToAtVmuYrpeYUh3qh+TEp+08IWhpsrIflVHqQ1F1CiPxQGL7doCdBIOOCF+1Tm833faNg==}
 
   '@types/argparse@1.0.38':
     resolution: {integrity: sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==}
@@ -1435,7 +1435,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@tsconfig/node20@20.1.4': {}
+  '@tsconfig/node22@22.0.0': {}
 
   '@types/argparse@1.0.38': {}
 

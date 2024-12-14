@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.3.2 - 2024-12-14
+
+- chore: bumped deps
+
 ### 0.3.1 - 2024-11-27
 
 - refactor: explicitly type check in CI
