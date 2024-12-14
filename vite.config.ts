@@ -1,7 +1,7 @@
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [vue(), dts({ tsconfigPath: './tsconfig.app.json', rollupTypes: true })],
@@ -15,16 +15,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['vue'],
-    },
-  },
-  test: {
-    globals: true,
-    include: ['tests/unit/*.{test,spec}.ts', 'src/**/*.spec.ts'],
-    environment: 'happy-dom',
-    coverage: {
-      exclude: ['__mocks__/*', 'tests/*', '**/*.spec.ts'],
-      provider: 'v8',
-      reporter: ['text', 'json', 'json-summary'],
     },
   },
 })

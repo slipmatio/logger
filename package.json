@@ -18,13 +18,13 @@
     "email": "ville@unessa.net"
   },
   "scripts": {
-    "dev": "DEBUG=0 vite",
-    "build": "DEBUG=0 vite build",
-    "test": "DEBUG=0 vitest",
-    "test:e2e": "DEBUG=0 playwright test --ui",
-    "test:ci-e2e": "DEBUG=0 playwright test",
-    "coverage": "DEBUG=0 vitest run --coverage",
-    "ts": "DEBUG=0 vue-tsc --build --force"
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "test:e2e": "playwright test --ui",
+    "test:ci-e2e": "playwright test",
+    "coverage": "vitest run --coverage",
+    "ts": "vue-tsc --build --force"
   },
   "files": [
     "dist",
@@ -64,9 +64,6 @@
     "vue": {
       "optional": true
     }
-  },
-  "engines": {
-    "node": ">=22"
   },
   "repository": {
     "type": "git",
