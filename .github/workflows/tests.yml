@@ -59,7 +59,7 @@ jobs:
         run: pnpm coverage
 
       - name: Component Coverage
-        uses: davelosert/vitest-coverage-report-action@v2.8.1
+        uses: davelosert/vitest-coverage-report-action@v2.8.2
         if: ${{ always() }}
         with:
           working-directory: ./
