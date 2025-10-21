@@ -1,5 +1,10 @@
 # Changelog
 
+### 0.4.0 - 2025-10-21
+
+- refactor: better types
+- chore: bumped deps
+
 ### 0.3.2 - 2024-12-14
 
 - chore: bumped deps

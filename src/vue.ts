@@ -1,13 +1,13 @@
-import { isRef, unref, isReactive, toValue, isReadonly } from 'vue'
+import { isReactive, isReadonly, isRef, toValue, unref } from 'vue'
 
 import type { LoggerFunction } from './types'
 
-export const VueLogFn: LoggerFunction = function (
+export const VueLogFn: LoggerFunction = (
   method: 'log' | 'debug' | 'info' | 'warn' | 'error' | 'success' | 'critical',
-  message: any,
-  ...optionalParams: any[]
-) {
-  let logFn: (message: any, ...optionalParams: any[]) => void
+  message: unknown,
+  ...optionalParams: unknown[]
+) => {
+  let logFn: (message: unknown, ...optionalParams: unknown[]) => void
 
   switch (method) {
     case 'log':
@@ -33,10 +33,10 @@ export const VueLogFn: LoggerFunction = function (
   }
 
   if (optionalParams) {
-    const parsedParams: any[] = []
+    const parsedParams: unknown[] = []
     let msg = ''
 
-    optionalParams.forEach((param) => {
+    for (const param of optionalParams) {
       if (isRef(param)) {
         if (isReadonly(param)) {
           msg = '(computed):'
@@ -51,7 +51,7 @@ export const VueLogFn: LoggerFunction = function (
       } else {
         parsedParams.push(param)
       }
-    })
+    }
     logFn(message, ...parsedParams)
   } else {
     logFn(message)
