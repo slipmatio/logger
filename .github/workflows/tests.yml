@@ -33,18 +33,18 @@ jobs:
       PLAYWRIGHT_BROWSERS_PATH: 0
 
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: actions/cache@v5.0.4
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/cache@v6.1.0
         with:
           path: /home/runner/.local/share/pnpm/store
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
-      - uses: pnpm/action-setup@v5.0.0
+      - uses: pnpm/action-setup@v6.1.0
         with:
-          version: 10
+          version: 12
           run_install: true
-      - uses: actions/setup-node@v6.3.0
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
           cache: "pnpm"
@@ -59,7 +59,7 @@ jobs:
         run: pnpm coverage
 
       - name: Component Coverage
-        uses: davelosert/vitest-coverage-report-action@v2.9.3
+        uses: davelosert/vitest-coverage-report-action@v2.13.0
         if: ${{ always() }}
         with:
           working-directory: ./
@@ -71,7 +71,7 @@ jobs:
       - name: Run e2e tests
         run: pnpm test:ci-e2e
 
-      - uses: actions/upload-artifact@v7.0.0
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: playwright-report
